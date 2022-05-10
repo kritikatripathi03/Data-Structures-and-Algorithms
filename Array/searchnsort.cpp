@@ -27,6 +27,7 @@ int binarysearch(int arr[],int n, int key){
     return -1;
 }
 void selectionsort(int arr[],int n){
+//The algorithm of selection sort is one by one bringing the greatest numbers to en side.
     int i,j;
     for(i=0;i<n-1;i++){
         for(j=i+1;j<n;j++){
@@ -42,6 +43,7 @@ void selectionsort(int arr[],int n){
     }
 }
 void bubblesort(int arr[], int n){
+//Buble sort is an enhanced version of selection sort, wherein, unnecessary comparisons are not done!
     int counter = 0,i;
     while(counter<n-1){
         for(i=0;i<n-counter-1;i++){
