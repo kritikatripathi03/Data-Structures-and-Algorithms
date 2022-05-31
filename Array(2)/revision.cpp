@@ -84,8 +84,14 @@ int rotated_sorted(int arr[], int n, int k){
                 start = mid + 1;
             }
         }
-        else{
+        else if(arr[mid] > k){
+            end = mid - 1;
+        }
+        else if(arr[mid] < k && arr[mid] > 0){
             start = mid + 1;
+        }
+        else{
+            
         }
     }
     return -1;
