@@ -15,5 +15,6 @@ int main(){
     cout << "Empty Array? " << a.empty() << endl;
     cout << "First element of array: "<< a.front() << endl;
     cout << "Last element of array: "<< a.back() << endl;
+    cout << a.begin() << endl;
     return 0;
 }
