@@ -1,17 +1,43 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int main(){
-      //Write your code here.
-      vector<vector<int>> v {{1, 5, 8},{9, 6, 7}, {3, 4, 2}};
-      int start = INT_MAX, end = INT_MIN;
-      for(int i = 0; i < 3; i++){
-            int arr_sum = 0;
-            for(int j = 0; j < v.size(); j++){
-                  cout << v[i][j] << endl;
-                  arr_sum += v[i][j];
-            }
-            cout << "Sum: " << arr_sum << end;
+char diamond(int i, int j, int s){
+      bool backslash = true;
+      if(i >= s/2){
+            i = s - i - 1;
+            backslash = !backslash;
       }
-      return 0;
+
+      if(j < s/2){
+            j = s - j - 1;
+            backslash = !backslash;
+      }
+
+      j -= s / 2;
+      if(i == j){
+            if (backslash){
+                  return '\\';
+            }
+            else{
+                  return '/';
+            }
+      }
+      else if(i > j){
+            return 'o';
+      }
+      else{
+            return 'e';
+      }
+
+}
+
+int main(){
+      int s, r, c;
+      cin >> s >> r >> c;
+      for(int i = 0; i < r; i++){
+            for(int j = 0 ; j < c; j++){
+                  cout << diamond(i % s, j % s, s);
+            }
+            cout << endl;
+      }
 }
