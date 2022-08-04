@@ -22,23 +22,23 @@ bool palindrome(char arr[], int n){
 }
 int main(){
     int n, i;
-    cout<<"Enter the size of your character array:";
-    cin>>n;
+    cout << "Enter the size of your character array:";
+    cin >> n;
     char arr[n];
-    cout<<"Enter the elements of your array:"<<endl;
-    for(i=0;i<n;i++){
-        cin>>arr[i];
+    cout << "Enter the elements of your array:" << endl;
+    for(i = 0; i < n; i++){
+        cin >> arr[i];
     }
-    cout<<"Your array is:"<<endl;
-    for(i=0;i<n;i++){
-        cout<<arr[i];
+    cout << "Your array is:" << endl;
+    for(i = 0; i < n; i++){
+        cout << arr[i];
     }
     bool flag = palindrome(arr,n);
-    if (flag){
-        cout<<"Array is a Palindrome!"<<endl;
+    if (flag) {
+        cout << "Array is a Palindrome!" << endl;
     }
     else{
-        cout<<"Array is not a Palindrome!"<<endl;
+        cout << "Array is not a Palindrome!" << endl;
     }
     return 0;
 }
