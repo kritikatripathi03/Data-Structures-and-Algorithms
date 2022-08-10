@@ -20,8 +20,8 @@ void insertion_sort(int *arr, int i, int n){
 }
 
 int main(){
-    int arr[15] = {3,7,0,1,5,8,3,2,34,66,87,23,12,12,12};
-    int n = 15;
+    int arr[6] = {5, 10, 2, 3, 14, 5};
+    int n = 6;
 
     insertion_sort(arr, 1, n);
 
