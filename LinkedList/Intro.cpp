@@ -10,6 +10,15 @@ class Node{
         this -> data = data;
         this -> next = NULL;
     }
+
+    //destructor
+    ~Node() {
+        int value = this -> data;
+        if(this -> next != NULL){
+            delete next;
+            this -> next = NULL;
+        }
+    }
 };
 
 void insertionAtHead(Node* &head, int d){
@@ -58,15 +67,40 @@ void print(Node* &head){
     cout << endl;
 }
 
-void deleteNode(int position, Node* &head){
+int GetCount(Node* head){
+    int count = 0;
+    Node* curr = head;
+    while(curr != NULL){
+        curr = curr -> next;
+        count ++;
+    }
+    return count;
+}
+
+void deleteNode(int position, Node* &head, Node* &tail){
 
     if(position == 1){
         Node* temp = head;
         head = head -> next;
+        temp -> next = NULL;
         delete temp;        
     }
     else{
+        Node* curr = head;
+        Node* prev = NULL;
 
+        int cnt = 1;
+        while (cnt < position){
+            prev = curr;
+            curr = curr -> next;
+            cnt ++;
+        }
+        if(position == GetCount(head)){
+            tail = prev;
+        }
+        prev -> next = curr -> next;
+        curr -> next = NULL;
+        delete curr;
     }
 }
 
@@ -95,5 +129,11 @@ int main(){
     insertionAtPosition(tail, head, 4, 3);
 
     print(head);
+
+    deleteNode(5, head, tail);
+
+    print(head);
+
+    cout << tail -> data << endl;
     return 0;
 }
