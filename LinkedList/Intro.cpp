@@ -92,7 +92,7 @@ int main(){
 
     print(head);
     
-    insertionAtPosition(tail, head, 4, 35);
+    insertionAtPosition(tail, head, 4, 3);
 
     print(head);
     return 0;
