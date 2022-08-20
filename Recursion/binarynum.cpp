@@ -6,7 +6,7 @@ string recursebin(long long int num, int ten){
     if(num == 0){
         return "0";
     }
-    return result.push_back((num % 2) * (long long int)(pow(10, ten)+1e-9)  + recursebin(num / 2, ten + 1));
+    return result.push_back((num % 2) * (long long int)(pow(10, ten)+1e-9) + recursebin(num / 2, ten + 1));
 }
 
 int main(){

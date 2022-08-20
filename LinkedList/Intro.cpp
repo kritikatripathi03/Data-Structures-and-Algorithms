@@ -104,6 +104,8 @@ void deleteNode(int position, Node* &head, Node* &tail){
     }
 }
 
+
+
 int main(){
     Node* node1 = new Node(1);
     cout << node1 -> data << endl;

@@ -13,6 +13,15 @@ class Node{
         this -> next = NULL;
         this -> prev = NULL;
     }
+
+    //destructor
+    ~Node(){
+        int val =this -> data;
+        if(this -> next != NULL){
+            delete next;
+            next = NULL;
+        }
+    }
 };
 
 void print(Node* head){
@@ -34,10 +43,11 @@ int GetCount(Node* head){
     return cnt;
 }
 
-void insertAtHead(Node* &head, int d){
+void insertAtHead(Node* &head, Node* &tail, int d){
     if(head == NULL){
         Node* temp = new Node(d);
         head = temp;
+        tail = temp;
     }
     else{
         Node* temp = new Node(d);
@@ -48,10 +58,11 @@ void insertAtHead(Node* &head, int d){
     
 }
 
-void insertAtTail(Node* &tail, int d){
+void insertAtTail(Node* &tail, Node* &head, int d){
     if(tail == NULL){
         Node* temp = new Node(d);
         tail = temp;
+        head = temp;
     }
     else{
         Node* temp = new Node(d);
@@ -63,7 +74,7 @@ void insertAtTail(Node* &tail, int d){
 
 void insertAtPosition(int d, Node* &head, Node* &tail, int position){
     if(position == 1){
-        insertAtHead(head, d);
+        insertAtHead(head, tail, d);
         return;
     }
     Node* temp = head;
@@ -75,7 +86,7 @@ void insertAtPosition(int d, Node* &head, Node* &tail, int position){
     }
 
     if(temp -> next == NULL){
-        insertAtTail(tail, d);
+        insertAtTail(tail, head, d);
         return;
     }
     num -> next = temp -> next;
@@ -83,6 +94,36 @@ void insertAtPosition(int d, Node* &head, Node* &tail, int position){
     temp -> next = num;
     num -> prev = temp;
 
+}
+
+void deleteNode(int position, Node* &head, Node* &tail){
+
+    if(position == 1){
+        Node* temp = head;
+        temp -> next -> prev = NULL;
+        head = temp -> next;
+        temp -> next = NULL;
+        delete temp;        
+    }
+    else{
+        Node* curr = head;
+        Node* prev = NULL;
+
+        int cnt = 1;
+        while(cnt < position){
+            prev = curr;
+            curr = curr -> next;
+            cnt ++;
+        }
+        if(position == GetCount(head)){
+            tail = prev;
+        }
+        prev -> next = curr -> next;
+        curr -> prev = NULL;
+        curr -> next = NULL; 
+
+        delete curr;
+    }
 }
 
 int main(){
@@ -93,25 +134,31 @@ int main(){
 
     cout << GetCount(head) << endl;
 
-    insertAtHead(head, 5);
+    insertAtHead(head, tail, 5);
 
     print(head);
 
-    insertAtTail(tail, 15);
+    insertAtTail(tail, head, 15);
 
     print(head);
 
-    insertAtHead(head, 0);
+    insertAtHead(head, tail, 0);
 
     print(head);
 
-    insertAtTail(tail, 25);
+    insertAtTail(tail, head, 25);
 
     print(head);
 
     insertAtPosition(20, head, tail, 5);
 
     print(head);
+
+    deleteNode(5, head, tail);
+
+    print(head);
+
+    cout << tail -> data << endl;
 
     return 0;
 }
