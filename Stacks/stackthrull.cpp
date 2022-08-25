@@ -34,7 +34,7 @@ public:
         top = NULL;
         head = NULL;
     }
-    push(int d)
+    void push(int d)
     {
         if (size - cnt > 1)
         {
@@ -53,32 +53,68 @@ public:
         }
     }
 
-    pop(){
+    void pop(){
         if(top != NULL){
             Node* curr = head;
             Node* prev = NULL;
-
-            int c = 1;
-            while (cnt < cnt){
-                prev = curr;
-                curr = curr -> next;
+            Node* temp = head;
+            cnt = 0;
+            while(temp != NULL){
+                temp = temp -> next;
                 cnt ++;
             }
-            tail = prev;
+            if(cnt == 1){
+                top = NULL;
+                return;
+            }
+            int c = 1;
+            while (c < cnt){
+                prev = curr;
+                curr = curr -> next;
+                c ++;
+            }
+            top = prev;
             prev -> next = curr -> next;
             curr -> next = NULL;
             delete curr;
         }
     }
-    peek(){
+    void peek(){
         if(top != NULL){
             cout << top -> data << endl;
+            return;
         }
+        else{
+            cout << -1 << endl;
+            return;
+        }
+    }
+    bool isEmpty(){
+        if(top != NULL){
+            return false;
+        }
+        return true;
     }
 };
 
 int main()
 {
-
+    Stack st(5);
+    st.peek();
+    st.push(22);
+    st.peek();
+    st.push(34);
+    st.peek();
+    st.push(55);
+    st.peek();
+    st.pop();
+    st.peek();
+    cout << st.isEmpty() << endl;
+    st.peek();
+    st.pop();
+    st.peek();
+    st.pop();
+    st.peek();
+    cout << st.isEmpty() << endl;
     return 0;
 }
