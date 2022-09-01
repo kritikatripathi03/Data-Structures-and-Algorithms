@@ -7,6 +7,7 @@ class Hero{
 
     public:
     char level;
+    static int timeToComplete;
     char *name;
     Hero(){
         cout << "Simple Constructor called!" << endl;
@@ -54,7 +55,9 @@ class Hero{
     ~Hero(){
         cout << "Destructor called." << endl;
     }
-};
+}; 
+
+int Hero::timeToComplete = 5;
 
 int main(){
 
@@ -77,8 +80,15 @@ int main(){
     Hero hero3 = hero1;
     hero3.print();
 
+    cout << Hero::timeToComplete << endl;
+    cout << "timeToComplete is a static variable" << endl;
+
+    Hero a;
+    a.timeToComplete = 5;
+    cout << a.timeToComplete << endl;
     //copy assignment operator
     //hero4 = hero2;
+
     return 0;
 }
 
