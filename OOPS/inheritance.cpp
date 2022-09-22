@@ -1,7 +1,6 @@
 #include<iostream>
 using namespace std;
 
-
 class Human{
 
     public:
@@ -29,6 +28,7 @@ class Male : public Human {
 
 int main(){
     Male object1;
+    
     cout << object1.age << endl;
     cout << object1.height << endl;
     cout << object1.weight << endl;
