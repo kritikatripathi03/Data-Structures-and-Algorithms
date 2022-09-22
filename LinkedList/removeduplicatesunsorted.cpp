@@ -37,6 +37,7 @@ void removeduplicates(Node* head){
             prev = temp;
             temp = temp -> next;
         }
+        curr = curr -> next;
     }
 }
 
