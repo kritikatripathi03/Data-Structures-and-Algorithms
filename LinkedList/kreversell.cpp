@@ -25,6 +25,7 @@ Node* kreverse(Node* head, int k){
         curr -> next = prev;
         prev = curr;
         curr = next;
+        cnt += 1;
     }
     if(curr != NULL){
         head -> next = kreverse(next, k);

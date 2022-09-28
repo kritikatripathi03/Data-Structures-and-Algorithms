@@ -159,3 +159,94 @@ int main(){
     cout << tail -> data << endl;
     return 0;
 }
+
+/**#include <iostream>
+using namespace std;
+class Node {
+  public:
+    int data; //Data to store (could be int,string,object etc)
+  Node * nextElement; //Pointer to next element
+  Node() {
+    //Constructor to initialize nextElement of newlyCreated Node
+    nextElement = nullptr;
+  }
+};
+
+class LinkedList {
+  private:
+    Node * head;
+  public:
+
+    LinkedList(){
+        head = nullptr;
+    };
+  Node * getHead();
+  bool isEmpty(){
+    return head == nullptr;
+    };
+  void printList(){
+    Node* current = head;
+    while(current != nullptr){
+        cout << current -> data << "->";
+        current = current -> nextElement;
+    }
+    cout << "null" << endl;
+    };
+  void insertAtHead(int value){
+  //printList();
+  Node* newNode = new Node();
+  newNode -> data = value;
+  if(isEmpty()){
+    head = newNode;
+    }
+    else{
+      newNode -> nextElement = head;
+      head = newNode;
+  }
+  };
+  string elements(){
+  if(detectLoop()){
+    return "";
+    }
+    Node* current = head;
+    string result = "";
+    while(current != nullptr){
+        result += to_string(current -> data);
+        result += "->";
+        current = current -> nextElement;
+    }
+    result += "null";
+    return result;
+    };
+  void insertAtTail(int value);
+  bool search(int value);
+  bool deleteAtHead();
+  bool Delete(int value);
+  int length();
+  string reverse();
+  void insertLoop(){
+    Node* current = head -> nextElement;
+    current -> nextElement = head;
+    };
+  bool detectLoop();
+};
+
+bool LinkedList::detectLoop(){
+  // Write your code here
+  if(isEmpty()){
+    return false;
+    }
+  Node* slow = head;
+  Node* fast = head;
+  while(fast != nullptr && slow != nullptr){
+    fast = fast -> nextElement;
+    if(fast != nullptr){
+        fast = fast -> nextElement;
+    }
+    slow = slow -> nextElement;
+    if(fast -> data == slow -> data){
+        return true;
+    }
+    }
+  return false;
+}**/
