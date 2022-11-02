@@ -57,6 +57,7 @@ int main(){
     string m="nincompoop";
     m.erase(3,3);
     cout<<m<<endl;
+    cout << "Ye rha:" << endl;
     cout<<m.find("poop")<<endl;
     m.insert(3,"com");
     cout<<m.length()<<endl;
