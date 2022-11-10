@@ -132,7 +132,7 @@ int main(){
     Node* tail = NULL;
     print(head);
 
-    cout << GetCount(head) << endl;
+    /*cout << GetCount(head) << endl;
 
     insertAtHead(head, tail, 5);
 
@@ -140,25 +140,25 @@ int main(){
 
     insertAtTail(tail, head, 15);
 
-    print(head);
+    print(head);*/
 
     insertAtHead(head, tail, 0);
 
     print(head);
 
-    insertAtTail(tail, head, 25);
+    /*insertAtTail(tail, head, 25);
 
     print(head);
 
     insertAtPosition(20, head, tail, 5);
 
+    print(head);*/
+
+    deleteNode(1, head, tail);
+
     print(head);
 
-    deleteNode(5, head, tail);
-
-    print(head);
-
-    cout << tail -> data << endl;
+    //cout << tail -> data << endl;
 
     return 0;
 }
