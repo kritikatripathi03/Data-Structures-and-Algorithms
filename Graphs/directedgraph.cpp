@@ -89,6 +89,38 @@ class Graph{
             vertices = v;
         }
         void addEdge(int source, int destination){
-            if()
+            if(source < vertices && destination < vertices){
+                array[source].insertAtHead(destination);
+            }
         }
+        void printGraph(){
+            cout << "Adjacent list of directed graph:" << endl;
+            Node* temp;
+            for(int i = 0; i < vertices; i ++){
+                cout << "|" << i << "| => ";
+            temp = array[i].getHead();
+            while(temp){
+                cout << temp -> data << " -> ";
+                temp = temp -> next;
+            }
+            cout << "NULL" << endl;
+            }
+        }
+        LinkedList* getArray(){
+        return array;
+        }
+        int getVertices(){
+            return vertices;
+        }
+};
+
+int main() {
+    Graph g(4);
+    g.addEdge(0, 1);
+    g.addEdge(0, 2);
+    g.addEdge(1, 3);
+    g.addEdge(2, 3);
+    cout << endl;
+    g.printGraph();
+    return 0;
 }
