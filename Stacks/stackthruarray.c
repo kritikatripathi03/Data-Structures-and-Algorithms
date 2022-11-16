@@ -12,7 +12,7 @@ void pop(){
     top --;
 }
 
-int top(){
+int getTop(){
     return top;
 }
 
