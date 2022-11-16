@@ -1,8 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Node
-{
+class Node{
 public:
     int data;
     Node *nextElement; // Pointer to next element
@@ -12,85 +11,72 @@ public:
     }
 };
 
-class LinkedList
-{
-private:
-    Node *head;
+class LinkedList {
+    private:
+        Node *head;
 
-public:
-    LinkedList()
-    {
-        head = nullptr;
-    }
-    bool isEmpty()
-    {
-        if (head == nullptr) // Check whether the head points to null
-            return true;
-        else
-            return false;
-    }
-
-    Node *getHead()
-    {
-        return head;
-    }
-
-    bool printList()
-    {
-        if (isEmpty())
-        {
-            cout << "List is Empty!";
-            return false;
+    public:
+        LinkedList() {
+            head = nullptr;
         }
-        Node *temp = head;
-        cout << "List : ";
-
-        while (temp != nullptr)
-        {
-            cout << temp->data << "->";
-            temp = temp->nextElement;
+        bool isEmpty(){
+            if (head == nullptr) // Check whether the head points to null
+                return true;
+            else
+                return false;
         }
-        cout << "null " << endl;
-        return true;
-    }
 
-    bool insertAtHead(int value)
-    {
-        Node *newNode = new Node();
-        newNode->data = value;
-        newNode->nextElement = head; // Linking newNode to head's nextNode
-        head = newNode;
-        return true;
-    }
-
-    void insertAtTail(int value)
-    {
-        if (isEmpty())
-        { // inserting first element in list
-            insertAtHead(value);
+        Node *getHead(){
+            return head;
         }
-        else
-        {
-            Node *newNode = new Node();
-            Node *last = head;
 
-            while (last->nextElement != nullptr)
+        bool printList() {
+            if (isEmpty())
             {
-                last = last->nextElement;
+                cout << "List is Empty!";
+                return false;
             }
+            Node *temp = head;
+            cout << "List : ";
 
-            newNode->data = value;
-            newNode->nextElement = nullptr;
-            last->nextElement = newNode;
+            while (temp != nullptr) {
+                cout << temp->data << "->";
+                temp = temp->nextElement;
+            }
+            cout << "null " << endl;
+            return true;
         }
+
+        bool insertAtHead(int value) {
+            Node *newNode = new Node();
+            newNode->data = value;
+            newNode->nextElement = head; // Linking newNode to head's nextNode
+            head = newNode;
+            return true;
+        }
+
+        void insertAtTail(int value) {
+            if (isEmpty()) { // inserting first element in list
+                insertAtHead(value);
+            }
+            else {
+                Node *newNode = new Node();
+                Node *last = head;
+
+                while (last->nextElement != nullptr) {
+                    last = last->nextElement;
+                }
+
+                newNode->data = value;
+                newNode->nextElement = nullptr;
+                last->nextElement = newNode;
+            }
     }
 
-    bool search(int value)
-    { // function to check if element exists in list
+    bool search(int value) { // function to check if element exists in list
         Node *temp = head;
 
-        while (temp != nullptr)
-        {
+        while (temp != nullptr){
             if (temp->data == value)
             {
                 return true;
@@ -100,19 +86,16 @@ public:
         return false;
     }
 
-    bool deleteAtHead(int value)
-    {
+    bool deleteAtHead(int value){
 
         bool deleted = false;
-        if (isEmpty())
-        {
+        if (isEmpty()) {
             return deleted;
         }
         Node *currentNode = head;
         Node *nextNode = head->nextElement; // nextNode point to head's nextElement
 
-        if (currentNode->data == value)
-        {
+        if (currentNode->data == value) {
             currentNode = nextNode;
             head = currentNode;
             deleted = true;
@@ -121,17 +104,15 @@ public:
         return deleted;
     }
 
-    bool Delete(int value)
-    {
+    bool Delete(int value){
         bool deleted = false; // returns true if the node is deleted, false otherwise
 
-        if (isEmpty())
-        { // check if the list is empty
+        if (isEmpty()) { // check if the list is empty
             return deleted; // deleted will be false
         }
 
-        Node *currentNode = head;     // currentNode to traverse the list
-        Node *previousNode = nullptr; // previousNode starts from null
+        Node *currentNode = head;     // currentNode to traverse the list  
+        Node *previousNode = nullptr; // previousNode starts from null 
 
         if (currentNode->data == value)
         { // deleting value of head
@@ -140,10 +121,8 @@ public:
             return deleted; // returns true if the node is deleted
         }
 
-        while (currentNode != nullptr)
-        {
-            if (value == currentNode->data)
-            {
+        while (currentNode != nullptr) {
+            if (value == currentNode->data) {
                 previousNode->nextElement = currentNode->nextElement;
                 deleted = true;
                 break;
@@ -151,42 +130,35 @@ public:
             previousNode = currentNode;
             currentNode = currentNode->nextElement; // pointing current to current's nextElement
         }
-        if (deleted == false)
-        {
+        if (deleted == false){
             cout << value << " does not exist!" << endl;
         }
-        else
-        {
+        else{
             cout << value << " deleted!" << endl;
         }
         return deleted;
     } // end of delete()
 };
 
-class Graph
-{
+class Graph {
 private:
     int vertices;
     LinkedList *array;
 
 public:
-    Graph(int v)
-    {
+    Graph(int v) {
         array = new LinkedList[v];
         vertices = v;
     }
 
-    void addEdge(int source, int destination)
-    {
-        if (source < vertices && destination < vertices)
-        {
+    void addEdge(int source, int destination){
+        if (source < vertices && destination < vertices){
             array[source].insertAtHead(destination);
             array[destination].insertAtHead(source);
         }
     }
 
-    void printGraph()
-    {
+    void printGraph() {
         cout << "Adjacency List of Undirected Graph" << endl;
         Node *temp;
         for (int i = 0; i < vertices; i++)
@@ -194,8 +166,7 @@ public:
             cout << "|" << i << "| => ";
             temp = (array[i]).getHead();
 
-            while (temp != NULL)
-            {
+            while (temp != NULL) {
                 cout << "[" << temp->data << "] -> ";
                 temp = temp->nextElement;
             }
@@ -203,18 +174,15 @@ public:
         }
     }
 
-    LinkedList *getArray()
-    {
+    LinkedList *getArray() {
         return array;
     }
-    int getVertices()
-    {
+    int getVertices() {
         return vertices;
     }
 };
 
-int main()
-{
+int main() {
     Graph g(4);
     g.addEdge(0, 1);
     g.addEdge(0, 2);
