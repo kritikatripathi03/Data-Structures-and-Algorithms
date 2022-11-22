@@ -7,75 +7,59 @@ struct node {
     struct node* rightChild;
 };
 
-struct node* root = NULL;
-
-struct node* insert(struct node* currentNode, int val){
-    if(currentNode == NULL){
-        currentNode = (struct node*)malloc(sizeof(struct node));
-        currentNode -> data = val;
-    }
-    if(currentNode -> data < val){
-        currentNode -> leftChild = (struct node*)malloc(sizeof(struct node));
-        currentNode -> leftChild -> data = val;
-    }
-    else{
-        currentNode -> rightChild = (struct node*)malloc(sizeof(struct node));
-        currentNode -> rightChild -> data = val;
-    }
-    return currentNode;
+struct node* makeNode(int data){
+    struct node* newNode = (struct node*)malloc(sizeof(struct node));
+    newNode -> data = data;
+    newNode -> leftChild = NULL;
+    newNode -> rightChild = NULL;
+    return newNode;
 }
 
-struct node* insertBST(int val){
+void inOrderTraversal(struct node* root){
     if(root == NULL){
-        root = (struct node*)malloc(sizeof(struct node));
-        root -> data = val;
+        return;
     }
-    insert(root, val);
+    inOrderTraversal(root -> leftChild);
+    printf("%d ", root -> data);
+    inOrderTraversal(root -> rightChild);
 }
 
-void preOrderTraversal(struct node* currentNode){
-    if(currentNode != NULL){
-        printf("%d ", currentNode -> data);
-        preOrderTraversal(currentNode -> leftChild);
-        preOrderTraversal(currentNode -> rightChild);
+void preOrderTraversal(struct node* root){
+    if(root == NULL){
+        return;
     }
+    printf("%d ", root -> data);
+    preOrderTraversal(root -> leftChild);
+    preOrderTraversal(root -> rightChild);
 }
 
-void inOrderTraversal(struct node* currentNode){
-    if(currentNode != NULL){
-        inOrderTraversal(currentNode -> leftChild);
-        printf("%d ", currentNode -> data);
-        inOrderTraversal(currentNode -> rightChild);
+void postOrderTraversal(struct node* root){
+    if(root == NULL){
+        return;
     }
+    postOrderTraversal(root -> leftChild);
+    postOrderTraversal(root -> rightChild);
+    printf("%d ", root -> data);
 }
 
-void postOrderTraversal(struct node* currentNode){
-    if(currentNode != NULL){
-        postOrderTraversal(currentNode -> leftChild);
-        postOrderTraversal(currentNode -> rightChild);
-        printf("%d ", currentNode -> data);
-    }
-}
+//is every complimentary lattice is a complete lattice
 
-struct node* getRoot(){
-    return root;
-}
-
-int main() {
-    insertBST(4);
-    insertBST(9);
-    insertBST(5);
-    insertBST(2);
-    insertBST(8);
-    insertBST(12);
-
-    printf("PreOrder Print\n");
-    preOrderTraversal(getRoot());
+int main(){
+    struct node* root = makeNode(5);
+    printf("Chal gya!\n");
+    root -> leftChild = makeNode(6);
+    printf("Chal gya!\n");
+    root -> rightChild = makeNode(7);
+    printf("Chal gya!\n");
+    root -> leftChild -> leftChild = makeNode(8);
+    root -> leftChild -> rightChild = makeNode(9);
+    root -> rightChild -> leftChild = makeNode(10);
+    root -> rightChild -> rightChild = makeNode(11 );
+    inOrderTraversal(root);
     printf("\n");
-    inOrderTraversal(getRoot());
+    preOrderTraversal(root);
     printf("\n");
-    postOrderTraversal(getRoot());
+    postOrderTraversal(root);
     printf("\n");
-
-    return 0;
+    return 0; 
 }
