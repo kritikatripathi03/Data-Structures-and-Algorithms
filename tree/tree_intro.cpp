@@ -48,6 +48,7 @@ class BinarySearchTree {
                 root = new Node(val);
                 return;
             }
+            //cout << getRoot() -> value << endl;
             insert(this -> getRoot(), val);
         }
         void preOrderTraversal(Node* currentNode){
