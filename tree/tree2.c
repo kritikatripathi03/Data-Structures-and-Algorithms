@@ -15,18 +15,19 @@ struct node* createNode(int data){
     return temp;
 }
 
-struct node** insertNode(struct node** root, int data){
+struct node* insertNode(struct node** root, int data){
     struct node* newNode = createNode(data);
     if(*root == NULL){
         *root = newNode;
-        return root;
+        return *root;
     }
     if((*root) -> data < data){
-        (*root) -> rightChild = insertNode((*root) -> leftChild, data);
-        return root;
+        printf("Yes\n");
+        (*root) -> rightChild = insertNode(&(*root) -> leftChild, data);
+        return *root;
     }
-    (*root) -> leftChild = insertNode((*root) -> rightChild, data);
-    return root;
+    (*root) -> leftChild = insertNode(&(*root) -> rightChild, data);
+    return *root;
 }
 
 void insertBST(struct node** root, int data){
@@ -41,7 +42,8 @@ void preOrderTraversal(struct node* root){
     if(root == NULL){
         return;
     }
-    printf("%d ", root -> data);
+    printf("\n%d\n", root -> data);
+    //printf("%d ", root -> data);
     preOrderTraversal(root -> leftChild);
     preOrderTraversal(root -> rightChild);
     return;
@@ -70,13 +72,19 @@ void postOrderTraversal(struct node* root){
 
 int main(){
     struct node* root = NULL;
-    insertNode(&root, 5);
-    insertNode(&root, 4);
-    insertNode(&root, 6);
+    insertBST(&root, 5);
+    insertBST(&root, 4);
+    printf("%d ", root -> data);
+    printf("%d\n", root -> leftChild -> data);
+    printf("%d\n", root -> rightChild -> data);
+    if(root -> rightChild == NULL){
+        printf("Children are NULL.\n");
+    }
+    insertBST(&root, 6);
     preOrderTraversal(root);
-    printf("\n");
+    /**printf("\n");
     inOrderTraversal(root);
     printf("\n");
-    postOrderTraversal(root);
+    postOrderTraversal(root);**/
     return 0;
 }
