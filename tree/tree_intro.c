@@ -42,7 +42,7 @@ void postOrderTraversal(struct node* root){
     printf("%d ", root -> data);
 }
 
-//is every complimentary lattice is a complete lattice
+//lmao this is discrete - is every complimentary lattice is a complete lattice
 
 int main(){
     struct node* root = makeNode(5);
@@ -54,7 +54,7 @@ int main(){
     root -> leftChild -> leftChild = makeNode(8);
     root -> leftChild -> rightChild = makeNode(9);
     root -> rightChild -> leftChild = makeNode(10);
-    root -> rightChild -> rightChild = makeNode(11 );
+    root -> rightChild -> rightChild = makeNode(11);
     inOrderTraversal(root);
     printf("\n");
     preOrderTraversal(root);
